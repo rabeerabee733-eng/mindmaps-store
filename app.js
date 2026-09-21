@@ -17,6 +17,84 @@ const PRODUCTS = [
   { id: "nawawi40", name: "الأربعون النووية", price: 3 }
 ];
 
+const DISTRICTS_BY_GOVERNORATE = {
+  "عمّان": [
+    "لواء قصبة عمّان",
+    "لواء الجامعة",
+    "لواء ماركا",
+    "لواء القويسمة",
+    "لواء وادي السير",
+    "لواء سحاب",
+    "لواء الجيزة",
+    "لواء الموقر",
+    "لواء ناعور"
+  ],
+  "إربد": [
+    "لواء قصبة إربد",
+    "لواء المزار الشمالي",
+    "لواء الطيبة",
+    "لواء الكورة",
+    "لواء بني عبيد",
+    "لواء الأغوار الشمالية",
+    "لواء الوسطية",
+    "لواء الرمثا",
+    "لواء بني كنانة"
+  ],
+  "الزرقاء": [
+    "لواء قصبة الزرقاء",
+    "لواء الرصيفة",
+    "لواء الهاشمية"
+  ],
+  "البلقاء": [
+    "لواء قصبة السلط",
+    "لواء الشونة الجنوبية",
+    "لواء دير علا",
+    "لواء عين الباشا",
+    "لواء ماحص والفحيص"
+  ],
+  "المفرق": [
+    "لواء قصبة المفرق",
+    "لواء البادية الشمالية",
+    "لواء البادية الشمالية الغربية",
+    "لواء الرويشد"
+  ],
+  "جرش": [
+    "لواء قصبة جرش"
+  ],
+  "عجلون": [
+    "لواء قصبة عجلون",
+    "لواء كفرنجة"
+  ],
+  "مادبا": [
+    "لواء قصبة مادبا",
+    "لواء ذيبان"
+  ],
+  "الكرك": [
+    "لواء قصبة الكرك",
+    "لواء المزار الجنوبي",
+    "لواء الأغوار الجنوبية",
+    "لواء القطرانة",
+    "لواء القصر",
+    "لواء فقوع",
+    "لواء عي"
+  ],
+  "الطفيلة": [
+    "لواء قصبة الطفيلة",
+    "لواء بصيرا",
+    "لواء الحسا"
+  ],
+  "معان": [
+    "لواء قصبة معان",
+    "لواء البتراء",
+    "لواء الشوبك",
+    "لواء الحسينية"
+  ],
+  "العقبة": [
+    "لواء قصبة العقبة",
+    "لواء القويرة"
+  ]
+};
+
 const cart = new Map();
 
 const $ = (id) => document.getElementById(id);
@@ -185,7 +263,32 @@ function verifyOrder(orderNo, attempt=0){
   });
 }
 
-$("governorate").addEventListener("change",renderCart);
+function updateDistrictOptions(){
+  const gov = $("governorate").value;
+  const area = $("area");
+  const districts = DISTRICTS_BY_GOVERNORATE[gov] || [];
+
+  area.innerHTML = "";
+  const first = document.createElement("option");
+  first.value = "";
+  first.textContent = gov ? "اختر اللواء" : "اختر المحافظة أولًا";
+  area.appendChild(first);
+
+  districts.forEach(name => {
+    const option = document.createElement("option");
+    option.value = name;
+    option.textContent = name;
+    area.appendChild(option);
+  });
+
+  area.disabled = !gov;
+  area.value = "";
+}
+
+$("governorate").addEventListener("change",()=>{
+  updateDistrictOptions();
+  renderCart();
+});
 
 $("orderForm").addEventListener("submit", async (e)=>{
   e.preventDefault();
@@ -237,6 +340,7 @@ $("orderForm").addEventListener("submit", async (e)=>{
 $("newOrderBtn").addEventListener("click",()=>{
   cart.clear();
   $("orderForm").reset();
+  updateDistrictOptions();
   $("orderForm").hidden = false;
   $("successBox").hidden = true;
   renderProducts();
