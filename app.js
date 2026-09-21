@@ -5,7 +5,7 @@
    مثال:
    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzwxFRwNBsumcsj85en8lBRynkBCn2Mda4uLF7reBUvLkLxWq2b2uAkJPS_lX70pH1W/exec";
    ========================================================= */
-const SCRIPT_URL = "PUT_YOUR_WEB_APP_URL_HERE";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzwxFRwNBsumcsj85en8lBRynkBCn2Mda4uLF7reBUvLkLxWq2b2uAkJPS_lX70pH1W/exec";
 
 const PRODUCTS = [
   { id: "juz-amma", name: "جزء عمّ", price: 3 },
