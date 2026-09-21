@@ -62,28 +62,17 @@
     </section>
 
     <section id="cart" class="section soft">
-      <div class="container two-col">
-        <div>
-          <div class="section-title compact">
-            <span>مراجعة الطلب</span>
-            <h2>سلة المشتريات</h2>
-          </div>
-          <div class="card cart-card">
-            <div id="emptyCart" class="empty-state">
-              لم تضف أي منتج بعد. اختر المنتجات من الأعلى ثم تابع الطلب.
-            </div>
-            <div id="cartItems" class="cart-items"></div>
-          </div>
+      <div class="container cart-section-wrap">
+        <div class="section-title compact">
+          <span>مراجعة الطلب</span>
+          <h2>سلة المشتريات</h2>
         </div>
-
-        <aside class="card summary-card">
-          <h3>ملخص الحساب</h3>
-          <div class="summary-row"><span>قيمة الكتب</span><strong id="subtotal">0.00 د.أ</strong></div>
-          <div class="summary-row"><span>التوصيل</span><strong id="shipping">—</strong></div>
-          <div class="divider"></div>
-          <div class="summary-row total"><span>الإجمالي</span><strong id="grandTotal">0.00 د.أ</strong></div>
-          <small>يظهر سعر التوصيل بعد اختيار المحافظة.</small>
-        </aside>
+        <div class="card cart-card">
+          <div id="emptyCart" class="empty-state">
+            لم تضف أي منتج بعد. اختر المنتجات من الأعلى ثم تابع الطلب.
+          </div>
+          <div id="cartItems" class="cart-items"></div>
+        </div>
       </div>
     </section>
 
@@ -107,7 +96,12 @@
               <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="15" required placeholder="07XXXXXXXX">
             </label>
 
-            <label>
+            <div class="form-subtitle full">
+              <strong>عنوان المستلم</strong>
+              <span>المحافظة ثم اللواء ثم العنوان التفصيلي</span>
+            </div>
+
+            <label class="full">
               <span>المحافظة *</span>
               <select id="governorate" name="governorate" required>
                 <option value="">اختر المحافظة</option>
@@ -126,14 +120,14 @@
               </select>
             </label>
 
-            <label>
-              <span>المنطقة / اللواء *</span>
-              <input id="area" name="area" type="text" maxlength="70" required placeholder="مثال: الجبيهة">
+            <label class="full">
+              <span>اللواء *</span>
+              <input id="area" name="area" type="text" maxlength="70" required placeholder="اكتب اللواء">
             </label>
 
             <label class="full">
               <span>العنوان التفصيلي *</span>
-              <input id="address" name="address" type="text" maxlength="180" required placeholder="الحي، الشارع، أقرب معلم...">
+              <input id="address" name="address" type="text" maxlength="180" required placeholder="المنطقة، الحي، الشارع، أقرب معلم...">
             </label>
 
             <label class="full">
@@ -145,6 +139,15 @@
           <div class="payment-note">
             <strong>طريقة الدفع:</strong>
             <span>الدفع عند الاستلام</span>
+          </div>
+
+          <div class="order-summary" aria-live="polite">
+            <h3>ملخص الطلب</h3>
+            <div class="summary-row"><span>قيمة المنتجات</span><strong id="subtotal">0.00 د.أ</strong></div>
+            <div class="summary-row"><span>قيمة التوصيل</span><strong id="shipping">—</strong></div>
+            <div class="divider"></div>
+            <div class="summary-row total"><span>المجموع</span><strong id="grandTotal">0.00 د.أ</strong></div>
+            <small>يُحتسب التوصيل تلقائيًا بعد اختيار المحافظة.</small>
           </div>
 
           <label class="agree">
