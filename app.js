@@ -8,7 +8,7 @@
 const SCRIPT_URL = "PUT_YOUR_WEB_APP_URL_HERE";
 
 const PRODUCTS = [
-  { id: "juz-amma", name: "جزء عمّ", price: 5 },
+  { id: "juz-amma", name: "جزء عمّ", price: 3 },
   { id: "juz-tabarak", name: "جزء تبارك", price: 3 },
   { id: "juz-mujadila", name: "جزء المجادلة", price: 3 },
   { id: "surah-yasin", name: "سورة يس", price: 3 },
