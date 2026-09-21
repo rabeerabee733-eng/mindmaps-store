@@ -18,7 +18,6 @@ const PRODUCTS = [
 ];
 
 const cart = new Map();
-const draftQty = new Map(PRODUCTS.map(p => [p.id, 1]));
 
 const $ = (id) => document.getElementById(id);
 const money = (n) => `${Number(n).toFixed(2)} د.أ`;
@@ -33,43 +32,38 @@ function renderProducts(){
         <h3>${p.name}</h3>
         <div class="price">${p.price} دنانير <small>للكتاب</small></div>
         <div class="product-actions">
+          <span class="qty-label">العدد</span>
           <div class="qty-control" aria-label="اختيار الكمية">
-            <button type="button" onclick="changeDraft('${p.id}',-1)" aria-label="إنقاص الكمية">−</button>
-            <span id="draft-${p.id}">1</span>
-            <button type="button" onclick="changeDraft('${p.id}',1)" aria-label="زيادة الكمية">+</button>
+            <button type="button" onclick="changeProductQty('${p.id}',-1)" aria-label="إنقاص الكمية">−</button>
+            <span id="qty-${p.id}">${cart.get(p.id) || 0}</span>
+            <button type="button" onclick="changeProductQty('${p.id}',1)" aria-label="زيادة الكمية">+</button>
           </div>
-          <button class="add-btn" type="button" onclick="addToCart('${p.id}')">أضف للسلة</button>
         </div>
       </div>
     </article>
   `).join("");
 }
 
-window.changeDraft = function(id, delta){
-  let q = draftQty.get(id) || 1;
-  q = Math.max(1, Math.min(50, q + delta));
-  draftQty.set(id,q);
-  $(`draft-${id}`).textContent = q;
-};
+window.changeProductQty = function(id, delta){
+  let q = (cart.get(id) || 0) + delta;
+  q = Math.max(0, Math.min(50, q));
 
-window.addToCart = function(id){
-  const q = draftQty.get(id) || 1;
-  cart.set(id, (cart.get(id) || 0) + q);
-  draftQty.set(id, 1);
-  $(`draft-${id}`).textContent = "1";
+  if(q === 0) cart.delete(id);
+  else cart.set(id, q);
+
+  const el = $(`qty-${id}`);
+  if(el) el.textContent = q;
   renderCart();
-  $("cart").scrollIntoView({behavior:"smooth",block:"start"});
 };
 
 window.changeCartQty = function(id, delta){
-  let q = (cart.get(id) || 0) + delta;
-  if(q <= 0) cart.delete(id);
-  else cart.set(id, Math.min(99,q));
-  renderCart();
+  changeProductQty(id, delta);
 };
 
 window.removeFromCart = function(id){
   cart.delete(id);
+  const el = $(`qty-${id}`);
+  if(el) el.textContent = "0";
   renderCart();
 };
 
@@ -118,7 +112,7 @@ function normalizePhone(v){
 }
 
 function validate(){
-  if(cart.size === 0) return "أضف منتجًا واحدًا على الأقل إلى السلة.";
+  if(cart.size === 0) return "اختر عددًا لمنتج واحد على الأقل قبل إرسال الطلب.";
   const required = ["name","phone","governorate","area","address"];
   for(const id of required){
     if(!$(id).value.trim()) return "يرجى تعبئة جميع الحقول المطلوبة.";
@@ -245,6 +239,7 @@ $("newOrderBtn").addEventListener("click",()=>{
   $("orderForm").reset();
   $("orderForm").hidden = false;
   $("successBox").hidden = true;
+  renderProducts();
   renderCart();
   $("products").scrollIntoView({behavior:"smooth"});
 });
