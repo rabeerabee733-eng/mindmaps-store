@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#063d2d">
+  <meta name="description" content="متجر الخرائط الذهنية لأجزاء القرآن الكريم — كتب تعين على الحفظ والمراجعة والتلاوة.">
+  <title>الخَرَائِطُ الذِّهْنِيَّةُ | متجر الكتب</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#top" aria-label="العودة إلى أعلى الصفحة">
+        <img src="assets/logo.png" alt="شعار الخرائط الذهنية">
+        <div>
+          <strong>الخَرَائِطُ الذِّهْنِيَّةُ</strong>
+          <span>لأجزاء القرآن الكريم</span>
+        </div>
+      </a>
+      <a class="cart-mini" href="#cart" aria-label="الذهاب إلى سلة الطلب">
+        <span>سلة الطلب</span>
+        <b id="cartCount">0</b>
+      </a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <img class="hero-bg" src="assets/cover.png" alt="" aria-hidden="true">
+      <div class="hero-overlay"></div>
+      <div class="container hero-content">
+        <div class="hero-card">
+          <span class="eyebrow">كتب بصرية منظمة للحفظ والمراجعة</span>
+          <h1>الخَرَائِطُ الذِّهْنِيَّةُ</h1>
+          <p>خرائط ذهنية لأجزاء وسور مختارة من القرآن الكريم، بأسلوب يساعد على الربط والتذكر والمراجعة.</p>
+          <a class="btn primary" href="#products">تصفّح المنتجات</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="notice-strip">
+      <div class="container">
+        <span>التوصيل داخل عمّان: <b>2 د.أ</b></span>
+        <span>المحافظات: <b>3 د.أ</b></span>
+        <span>يُحتسب التوصيل تلقائيًا حسب المحافظة</span>
+      </div>
+    </section>
+
+    <section id="products" class="section">
+      <div class="container">
+        <div class="section-title">
+          <span>اختر ما يناسبك</span>
+          <h2>المنتجات</h2>
+          <p>يمكنك طلب أكثر من كتاب في الطلب نفسه وتحديد الكمية المطلوبة لكل منتج.</p>
+        </div>
+        <div id="productsGrid" class="products-grid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="cart" class="section soft">
+      <div class="container two-col">
+        <div>
+          <div class="section-title compact">
+            <span>مراجعة الطلب</span>
+            <h2>سلة المشتريات</h2>
+          </div>
+          <div class="card cart-card">
+            <div id="emptyCart" class="empty-state">
+              لم تضف أي منتج بعد. اختر المنتجات من الأعلى ثم تابع الطلب.
+            </div>
+            <div id="cartItems" class="cart-items"></div>
+          </div>
+        </div>
+
+        <aside class="card summary-card">
+          <h3>ملخص الحساب</h3>
+          <div class="summary-row"><span>قيمة الكتب</span><strong id="subtotal">0.00 د.أ</strong></div>
+          <div class="summary-row"><span>التوصيل</span><strong id="shipping">—</strong></div>
+          <div class="divider"></div>
+          <div class="summary-row total"><span>الإجمالي</span><strong id="grandTotal">0.00 د.أ</strong></div>
+          <small>يظهر سعر التوصيل بعد اختيار المحافظة.</small>
+        </aside>
+      </div>
+    </section>
+
+    <section id="order" class="section">
+      <div class="container order-wrap">
+        <div class="section-title">
+          <span>خطوة أخيرة</span>
+          <h2>بيانات الطلب</h2>
+          <p>أدخل بيانات صحيحة لتسهيل التواصل والتوصيل.</p>
+        </div>
+
+        <form id="orderForm" class="card order-form" novalidate>
+          <div class="form-grid">
+            <label>
+              <span>اسم المستلم *</span>
+              <input id="name" name="name" type="text" autocomplete="name" maxlength="70" required placeholder="الاسم">
+            </label>
+
+            <label>
+              <span>رقم الهاتف *</span>
+              <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="15" required placeholder="07XXXXXXXX">
+            </label>
+
+            <label>
+              <span>المحافظة *</span>
+              <select id="governorate" name="governorate" required>
+                <option value="">اختر المحافظة</option>
+                <option>عمّان</option>
+                <option>إربد</option>
+                <option>الزرقاء</option>
+                <option>البلقاء</option>
+                <option>المفرق</option>
+                <option>جرش</option>
+                <option>عجلون</option>
+                <option>مادبا</option>
+                <option>الكرك</option>
+                <option>الطفيلة</option>
+                <option>معان</option>
+                <option>العقبة</option>
+              </select>
+            </label>
+
+            <label>
+              <span>المنطقة / اللواء *</span>
+              <input id="area" name="area" type="text" maxlength="70" required placeholder="مثال: الجبيهة">
+            </label>
+
+            <label class="full">
+              <span>العنوان التفصيلي *</span>
+              <input id="address" name="address" type="text" maxlength="180" required placeholder="الحي، الشارع، أقرب معلم...">
+            </label>
+
+            <label class="full">
+              <span>ملاحظات إضافية</span>
+              <textarea id="notes" name="notes" rows="4" maxlength="400" placeholder="أي تفاصيل إضافية للطلب"></textarea>
+            </label>
+          </div>
+
+          <div class="payment-note">
+            <strong>طريقة الدفع:</strong>
+            <span>الدفع عند الاستلام</span>
+          </div>
+
+          <label class="agree">
+            <input id="agree" type="checkbox" required>
+            <span>أؤكد أن بيانات الطلب صحيحة.</span>
+          </label>
+
+          <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
+
+          <button id="submitBtn" class="btn primary wide" type="submit">
+            تأكيد وإرسال الطلب
+          </button>
+        </form>
+
+        <div id="successBox" class="success-box" hidden>
+          <div class="success-icon">✓</div>
+          <h3>تم استلام طلبك</h3>
+          <p>رقم الطلب:</p>
+          <strong id="successOrderNo"></strong>
+          <p class="muted">احتفظ برقم الطلب للمتابعة.</p>
+          <button id="newOrderBtn" class="btn outline" type="button">إنشاء طلب جديد</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <img src="assets/logo.png" alt="" aria-hidden="true">
+      <div>
+        <strong>الخَرَائِطُ الذِّهْنِيَّةُ</strong>
+        <p>خرائط ذهنية تعين على الحفظ والمراجعة والتلاوة.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
