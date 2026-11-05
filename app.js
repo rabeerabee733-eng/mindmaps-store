@@ -14,6 +14,7 @@ const PRODUCTS = [
   { id: "surah-yasin", name: "سورة يس", price: 3 },
   { id: "surah-kahf", name: "سورة الكهف", price: 3 },
   { id: "surah-baqarah", name: "سورة البقرة", price: 5 },
+  { id: "juz-al-imran", name: "جزء آل عمران", price: 3 },
   { id: "nawawi40", name: "الأربعون النووية", price: 3 }
 ];
 
